@@ -17,7 +17,7 @@ import random
 #         want_to_quit = input('Your turn has ended, Next Person to roll: ')
 
 quits = ''
-doubles = 0
+doubles = 1
 snake_eyes = 0
 underline = '_____________________________________________________________'
 
@@ -26,19 +26,23 @@ print(underline)
 while not quits:
     input('Enter to Roll: ')
     print('_________________________________________________________')
-    dice_value: int = random.randint(1, 2)
-    dice_value2 = random.randint(2, 2)
+    dice_value: int = random.randint(1, 1)
+    dice_value2 = random.randint(1, 1)
     print(f'You rolled a {dice_value} and a {dice_value2}')
 
     if dice_value == dice_value2:
         doubles = doubles + 1
+        if dice_value + dice_value2 != 2:
+            snake_eyes = 0
     else:
-        quit = input('Next player, Press enter to roll again')
-        print('_________________________________________________________')
+        print('Next player, ')
+        print('')
         doubles = 0
 
     if dice_value + dice_value2 == 2:
         snake_eyes = snake_eyes + 1
+        print('$NAKE EYES: [' + str(snake_eyes) + '] Move 14')
+        print('')
 
 
     if doubles >= 1 and doubles < 3:
@@ -50,7 +54,9 @@ while not quits:
         print('YOU ROLLED 3 SNAKE EYES GAME IS OVER YOU WIN!!!')
         quit('GAME OVER!')
 
-    if doubles == 3:
+    if doubles == 3 and snake_eyes >= 1:
+            print('Please Move Farthest Player Home, But Still Roll For Win')
+    elif doubles == 3:
         print('')
         print('You rolled 3 doubles! Return your farthest piece back to home!')
         print("Next players turn")
@@ -58,23 +64,8 @@ while not quits:
         doubles = 0
 
 
+    #
+    #
+    #
 
-
-
-
-    #     if doubles == 3 and snake_eyes >= 1:
-    #         print('Farthest Player Home Roll For Win')
-    #     else:
-    #         print('$NAKE EYES: [' + str(snake_eyes) + '] Move 14')
-    #         print('')
-    #
-    #
-    #
-    #
-    #     print("Doubles:" + str(doubles))
-    #     print('You Rolled DOUBLES!!! You get another turn!')
-    #     print('')
-    #     input('Press enter to roll again: ')
-    #     print('_____________________________________________________')
-    #
 
