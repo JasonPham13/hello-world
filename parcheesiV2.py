@@ -15,28 +15,51 @@ import random
 #         input('You rolled Doubles, please press Enter to roll again')
 #     else:
 #         want_to_quit = input('Your turn has ended, Next Person to roll: ')
+player_list = ["Yellow", "Green", "Red", "Blue"]
+
+beginning_player = ''
+
+while beginning_player != 'Yellow' and beginning_player != 'Green' and beginning_player != 'Red' and beginning_player != 'Blue':
+    beginning_player = input('Who is starting first? ')
+
+current_player = int()
+
+if beginning_player == 'Yellow':
+    current_player = 0
+elif beginning_player == 'Green':
+    current_player = 1
+elif beginning_player == 'Red':
+    current_player = 2
+elif beginning_player == 'Blue':
+    current_player = 3
+
 
 quits = ''
-doubles = 1
+doubles = 0
 snake_eyes = 0
-underline = '_____________________________________________________________'
+underline = '_________________________________________________________'
 
 print(underline)
 
+print(f'Player {player_list[current_player]} is up! ')
 while not quits:
     input('Enter to Roll: ')
     print('_________________________________________________________')
-    dice_value: int = random.randint(1, 1)
-    dice_value2 = random.randint(1, 1)
-    print(f'You rolled a {dice_value} and a {dice_value2}')
+    dice_value: int = random.randint(1, 6)
+    dice_value2 = random.randint(1, 6)
+    print(f'You rolled a [{dice_value}] and a [{dice_value2}]')
 
     if dice_value == dice_value2:
         doubles = doubles + 1
         if dice_value + dice_value2 != 2:
             snake_eyes = 0
     else:
-        print('Next player, ')
+        current_player = current_player + 1
+        if current_player > 3:
+            current_player = 0
+        print(underline)
         print('')
+        print(f"**** {player_list[current_player]}, you're up! **** ")
         doubles = 0
 
     if dice_value + dice_value2 == 2:
